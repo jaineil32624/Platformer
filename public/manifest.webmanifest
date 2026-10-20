@@ -1,0 +1,17 @@
+{
+  "name": "Lumen Leap",
+  "short_name": "Lumen Leap",
+  "description": "A polished 2D platformer. Run, jump and wall-jump from dawn to midnight.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#1b1f3b",
+  "theme_color": "#1b1f3b",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

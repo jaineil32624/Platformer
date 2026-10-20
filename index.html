@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#1b1f3b" />
+    <meta name="description" content="Lumen Leap — run, jump and wall-jump through six handcrafted levels from dawn to midnight." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="preload" href="./fonts/Poppins-Bold.woff" as="font" type="font/woff" crossorigin />
+    <title>Lumen Leap</title>
+    <style>
+      @font-face {
+        font-family: 'Poppins';
+        font-weight: 700;
+        font-display: block;
+        src: url('./fonts/Poppins-Bold.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Poppins';
+        font-weight: 500;
+        font-display: block;
+        src: url('./fonts/Poppins-Medium.woff') format('woff');
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #1b1f3b;
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        overscroll-behavior: none;
+      }
+      #game {
+        position: fixed;
+        inset: 0;
+      }
+      #game canvas {
+        display: block;
+      }
+      /* Lightweight HTML loader shown until Phaser boots (keeps first paint instant). */
+      #boot-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        color: #ffe9a8;
+        font: 700 22px Poppins, system-ui, sans-serif;
+        letter-spacing: 0.08em;
+        background: radial-gradient(circle at 50% 40%, #2c3470, #1b1f3b 70%);
+        transition: opacity 0.4s ease;
+        z-index: 10;
+      }
+      #boot-loader .orb {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, #fffbe0, #ffd34d 45%, #ff9f1c);
+        box-shadow: 0 0 30px #ffd34d;
+        animation: bob 0.9s ease-in-out infinite alternate;
+      }
+      @keyframes bob {
+        to {
+          transform: translateY(-14px) scale(1.05);
+        }
+      }
+      #boot-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      noscript {
+        color: #fff;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game"></div>
+    <div id="boot-loader"><div class="orb"></div><div>LUMEN LEAP</div></div>
+    <noscript>Lumen Leap needs JavaScript enabled to run.</noscript>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

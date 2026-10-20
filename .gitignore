@@ -1,0 +1,24 @@
+node_modules/
+dist/
+release/
+coverage/
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.*
+# Native build outputs (the native projects themselves ARE committed)
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/keystore.properties
+*.jks
+*.keystore
+ios/App/Pods/
+ios/App/build/
+ios/DerivedData/
+*.ipa
+*.aab
+*.apk
+tsconfig.verify.json

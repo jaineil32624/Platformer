@@ -1,0 +1,110 @@
+{
+  "name": "lumen-leap",
+  "productName": "Lumen Leap",
+  "version": "1.0.0",
+  "description": "A polished cross-platform 2D platformer built with Phaser 3, TypeScript and Vite. Ships to web, Windows, macOS, Android and iOS.",
+  "author": "Jaineil Rana",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "homepage": "./",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaineil32624/lumen-leap.git"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "build:pages": "tsc --noEmit && vite build --base=/lumen-leap/",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "assets:icons": "capacitor-assets generate --iconBackgroundColor '#1b1f3b' --iconBackgroundColorDark '#1b1f3b' --splashBackgroundColor '#1b1f3b' --splashBackgroundColorDark '#0d0f22'",
+    "cap:sync": "npm run build && cap sync",
+    "android:open": "npm run cap:sync && cap open android",
+    "android:run": "npm run cap:sync && cap run android",
+    "android:release": "npm run cap:sync && cd android && ./gradlew bundleRelease assembleRelease",
+    "ios:open": "npm run cap:sync && cap open ios",
+    "ios:run": "npm run cap:sync && cap run ios",
+    "electron:dev": "npm run build && electron .",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.0",
+    "@capacitor/app": "^7.0.0",
+    "@capacitor/core": "^7.4.0",
+    "@capacitor/haptics": "^7.0.0",
+    "@capacitor/ios": "^7.4.0",
+    "@capacitor/screen-orientation": "^7.0.0",
+    "@capacitor/splash-screen": "^7.0.0",
+    "@capacitor/status-bar": "^7.0.0",
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^7.4.0",
+    "@eslint/js": "^9.30.0",
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12",
+    "eslint": "^9.30.0",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.6.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.0",
+    "vite": "^7.0.0",
+    "vitest": "^3.2.4"
+  },
+  "build": {
+    "appId": "com.jaineilrana.lumenleap",
+    "productName": "Lumen Leap",
+    "copyright": "Copyright © 2026 Jaineil Rana",
+    "directories": {
+      "output": "release",
+      "buildResources": "build-resources"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build-resources/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "Lumen Leap"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.games",
+      "icon": "build-resources/icon.png",
+      "hardenedRuntime": true,
+      "entitlements": "build-resources/entitlements.mac.plist",
+      "entitlementsInherit": "build-resources/entitlements.mac.plist"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Game",
+      "icon": "build-resources/icon.png"
+    }
+  }
+}

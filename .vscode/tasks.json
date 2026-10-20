@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "dev server",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": { "regexp": "^__never__$" },
+        "background": { "activesBegin": true, "beginsPattern": "VITE", "endsPattern": "ready in" }
+      }
+    },
+    { "label": "build", "type": "npm", "script": "build", "group": "build" },
+    { "label": "test", "type": "npm", "script": "test", "group": "test" }
+  ]
+}
