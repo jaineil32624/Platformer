@@ -1,10 +1,11 @@
 name: Release builds
 
-# Push a tag like v1.0.0 to build desktop installers and an Android debug APK
-# and attach them to a GitHub Release.
+# Push a tag like v1.0.0 (or push to the `release` branch) to build desktop
+# installers and an Android APK and attach them to a GitHub Release.
 on:
   push:
     tags: ['v*']
+    branches: [release]
   workflow_dispatch:
     inputs:
       version:
@@ -13,7 +14,7 @@ on:
         required: true
 
 env:
-  VERSION: ${{ github.event.inputs.version || github.ref_name }}
+  VERSION: ${{ github.event.inputs.version || (startsWith(github.ref, 'refs/tags/') && github.ref_name) || 'v1.0.0' }}
 
 permissions:
   contents: write
