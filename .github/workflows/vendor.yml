@@ -1,0 +1,40 @@
+name: Vendor offline assets
+
+# Downloads the Google Fonts used by the app into vendor/
+# so the site, the installable PWA and the Android APK all work offline.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/vendor.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare vendor dir
+        run: |
+          mkdir -p vendor/fonts
+      - name: Download fonts (woff2) and rewrite CSS to local paths
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+          curl -fsSL -A "$UA" "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" -o /tmp/fonts.css
+          cp /tmp/fonts.css vendor/fonts.css
+          i=0
+          for url in $(grep -o 'https://fonts.gstatic.com/[^)]*' /tmp/fonts.css | sort -u); do
+            i=$((i+1)); name="f$i.woff2"
+            curl -fsSL "$url" -o "vendor/fonts/$name"
+            sed -i "s#$url#fonts/$name#g" vendor/fonts.css
+          done
+          ls -la vendor vendor/fonts
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add vendor
+          git diff --cached --quiet || git commit -m "Vendor fonts for offline use"
+          git push
