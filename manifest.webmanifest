@@ -1,0 +1,19 @@
+{
+  "name": "Money Click — premium idle clicker",
+  "short_name": "Money Click",
+  "description": "Click, combo and crit your way from a farm to dimension portals. Golden coins, achievements, prestige and offline earnings.",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1b1745",
+  "theme_color": "#1b1840",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
